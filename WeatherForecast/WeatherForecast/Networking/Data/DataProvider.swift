@@ -15,4 +15,7 @@ public enum DataProvider {
     public enum Network {
         public static let networkRepository: NetworkRepository = NetworkRepositoryImpl()
     }
+    public enum Storage {
+        public static let storageRepository: StorageRepository = StorageRepositoryImpl()
+    }
 }

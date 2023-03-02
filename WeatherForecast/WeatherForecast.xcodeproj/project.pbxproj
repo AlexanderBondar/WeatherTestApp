@@ -60,6 +60,12 @@
 		D7C1286D29B0D2C60071383D /* HomeScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1284129B0D2C60071383D /* HomeScreenBuilder.swift */; };
 		D7C1286E29B0D2C60071383D /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1284329B0D2C60071383D /* HomeScreenViewModel.swift */; };
 		D7C1286F29B0D2C60071383D /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1284329B0D2C60071383D /* HomeScreenViewModel.swift */; };
+		D7C1287329B0D9E50071383D /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1287229B0D9E50071383D /* StorageRepository.swift */; };
+		D7C1287429B0D9E50071383D /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1287229B0D9E50071383D /* StorageRepository.swift */; };
+		D7C1287629B0D9F40071383D /* StorageRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1287529B0D9F40071383D /* StorageRepositoryImpl.swift */; };
+		D7C1287729B0D9F40071383D /* StorageRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1287529B0D9F40071383D /* StorageRepositoryImpl.swift */; };
+		D7C1287B29B0DE030071383D /* UserDefaults+ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1287A29B0DE030071383D /* UserDefaults+ObjectSavable.swift */; };
+		D7C1287C29B0DE030071383D /* UserDefaults+ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1287A29B0DE030071383D /* UserDefaults+ObjectSavable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +121,9 @@
 		D7C1283F29B0D2C60071383D /* DomainProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainProvider.swift; sourceTree = "<group>"; };
 		D7C1284129B0D2C60071383D /* HomeScreenBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenBuilder.swift; sourceTree = "<group>"; };
 		D7C1284329B0D2C60071383D /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		D7C1287229B0D9E50071383D /* StorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepository.swift; sourceTree = "<group>"; };
+		D7C1287529B0D9F40071383D /* StorageRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepositoryImpl.swift; sourceTree = "<group>"; };
+		D7C1287A29B0DE030071383D /* UserDefaults+ObjectSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+ObjectSavable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +174,8 @@
 		D7C127C329B09CFD0071383D /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				D7C1287829B0DD9B0071383D /* Utils */,
+				D7C1287029B0D9B20071383D /* Storage */,
 				D7C127F429B0ADB20071383D /* Main */,
 				D7C1282029B0D2C60071383D /* Scenes */,
 				D7C1282629B0D2C60071383D /* Networking */,
@@ -335,6 +346,39 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		D7C1287029B0D9B20071383D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D7C1287129B0D9CD0071383D /* Repository */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		D7C1287129B0D9CD0071383D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D7C1287229B0D9E50071383D /* StorageRepository.swift */,
+				D7C1287529B0D9F40071383D /* StorageRepositoryImpl.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		D7C1287829B0DD9B0071383D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D7C1287929B0DDA50071383D /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D7C1287929B0DDA50071383D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D7C1287A29B0DE030071383D /* UserDefaults+ObjectSavable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -484,11 +528,14 @@
 				D7C1286629B0D2C60071383D /* WeatherForecastUseCaseImpl.swift in Sources */,
 				D7C1286229B0D2C60071383D /* WeatherModel.swift in Sources */,
 				D7C1284429B0D2C60071383D /* HomeViewController.swift in Sources */,
+				D7C1287629B0D9F40071383D /* StorageRepositoryImpl.swift in Sources */,
 				D7C1285429B0D2C60071383D /* WeatherAPI.swift in Sources */,
 				D7C1286C29B0D2C60071383D /* HomeScreenBuilder.swift in Sources */,
 				D7C1285629B0D2C60071383D /* NetworkError.swift in Sources */,
 				D7C1285A29B0D2C60071383D /* DataProvider.swift in Sources */,
 				D7C1286029B0D2C60071383D /* ConditionModel.swift in Sources */,
+				D7C1287B29B0DE030071383D /* UserDefaults+ObjectSavable.swift in Sources */,
+				D7C1287329B0D9E50071383D /* StorageRepository.swift in Sources */,
 				D7C1284A29B0D2C60071383D /* WeatherDayDTO.swift in Sources */,
 				D7C1284E29B0D2C60071383D /* ConditionDTO.swift in Sources */,
 			);
@@ -504,6 +551,7 @@
 				D7C1285129B0D2C60071383D /* NetworkRepositoryImpl.swift in Sources */,
 				D7C1286529B0D2C60071383D /* LocationModel.swift in Sources */,
 				D7C1284729B0D2C60071383D /* ForecastDTO.swift in Sources */,
+				D7C1287C29B0DE030071383D /* UserDefaults+ObjectSavable.swift in Sources */,
 				D7C127DC29B09CFF0071383D /* WeatherForecastTests.swift in Sources */,
 				D7C1285F29B0D2C60071383D /* WeatherDayModel.swift in Sources */,
 				D7C1286729B0D2C60071383D /* WeatherForecastUseCaseImpl.swift in Sources */,
@@ -513,10 +561,12 @@
 				D7C1285529B0D2C60071383D /* WeatherAPI.swift in Sources */,
 				D7C1284529B0D2C60071383D /* HomeViewController.swift in Sources */,
 				D7C1285729B0D2C60071383D /* NetworkError.swift in Sources */,
+				D7C1287429B0D9E50071383D /* StorageRepository.swift in Sources */,
 				D7C1285929B0D2C60071383D /* Endpoint.swift in Sources */,
 				D7C1286B29B0D2C60071383D /* DomainProvider.swift in Sources */,
 				D7C1286329B0D2C60071383D /* WeatherModel.swift in Sources */,
 				D7C1286D29B0D2C60071383D /* HomeScreenBuilder.swift in Sources */,
+				D7C1287729B0D9F40071383D /* StorageRepositoryImpl.swift in Sources */,
 				D7C1284F29B0D2C60071383D /* ConditionDTO.swift in Sources */,
 				D7C1286F29B0D2C60071383D /* HomeScreenViewModel.swift in Sources */,
 				D7C1285B29B0D2C60071383D /* DataProvider.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherDTO: Codable {
+public struct WeatherDTO: Codable {
     let location: LocationDTO
     let forecast: ForecastDTO
 }

@@ -12,6 +12,8 @@ import Foundation
 public enum DomainProvider {
     
     public enum UseCases {
-        public static let weatherList: WeatherForecastUseCase = WeatherForecastUseCaseImpl(network: DataProvider.Network.networkRepository)
+        public static let weatherList: WeatherForecastUseCase = WeatherForecastUseCaseImpl(
+            storage: DataProvider.Storage.storageRepository,
+            network: DataProvider.Network.networkRepository)
     }
 }
