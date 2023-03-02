@@ -99,8 +99,7 @@
 		D7C127C329B09CFD0071383D /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
-				D7C127C429B09CFD0071383D /* AppDelegate.swift */,
-				D7C127C629B09CFD0071383D /* SceneDelegate.swift */,
+				D7C127F429B0ADB20071383D /* Main */,
 				D7C127C829B09CFD0071383D /* ViewController.swift */,
 				D7C127CA29B09CFD0071383D /* Main.storyboard */,
 				D7C127CD29B09CFE0071383D /* Assets.xcassets */,
@@ -125,6 +124,15 @@
 				D7C127E729B09CFF0071383D /* WeatherForecastUITestsLaunchTests.swift */,
 			);
 			path = WeatherForecastUITests;
+			sourceTree = "<group>";
+		};
+		D7C127F429B0ADB20071383D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D7C127C429B09CFD0071383D /* AppDelegate.swift */,
+				D7C127C629B09CFD0071383D /* SceneDelegate.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
