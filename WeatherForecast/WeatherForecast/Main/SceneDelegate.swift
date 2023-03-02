@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let homeVC = HomeScreenBuilder.buildHomeScene()
         let navController = UINavigationController(rootViewController: homeVC)
-        navController.navigationBar.topItem?.title = "Weather forecast"
-        
+        navController.navigationBar.prefersLargeTitles = true
+
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }

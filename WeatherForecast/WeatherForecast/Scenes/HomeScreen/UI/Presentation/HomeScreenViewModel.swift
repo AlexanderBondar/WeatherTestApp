@@ -7,7 +7,16 @@
 
 final class HomeScreenViewModel {
     
-    private let city = "Praha"
+    // MARK: - Nested Types
+    
+    private enum Consts {
+        static let city = "Sofia"
+    }
+
+    // MARK: - Public properties
+
+    let dataSource = WeatherDataSource()
+    var onUpdateDataSource: (() -> Void)?
 
     // MARK: - Private properties
     
@@ -17,15 +26,21 @@ final class HomeScreenViewModel {
     
     init(useCase: WeatherForecastUseCase) {
         self.useCase = useCase
-        
-        loadByCity(city)
     }
     
+    // MARK: - Public methods
     
+    func fetchData() {
+        loadByCity(Consts.city)
+    }
+    
+    // MARK: - Private methods
+
     private func loadByCity(_ city: String) {
         
         useCase.getList(city: city) { [weak self] model in
-            print()
+            self?.dataSource.update(model)
+            self?.onUpdateDataSource?()
         }
     }
 }
