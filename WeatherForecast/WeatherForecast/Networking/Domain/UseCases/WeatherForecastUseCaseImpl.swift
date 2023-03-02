@@ -31,11 +31,11 @@ struct WeatherForecastUseCaseImpl: WeatherForecastUseCase {
     
     func getList(
         city: String,
-        completion: @escaping (WeatherModel) -> ()
+        completion: @escaping (WeatherModel?) -> ()
     ) {
         
-        if let object = storage.getObject(by: WeatherDTO.self) {
-            completion(object.asDomain())
+        if let weather = getActualWeatherFromStorage() {
+            completion(weather.asDomain())
             return
         }
         
@@ -50,13 +50,37 @@ struct WeatherForecastUseCaseImpl: WeatherForecastUseCase {
                 case .success(let response):
                     result = response.asDomain()
                     storage.saveObject(response)
-
+                    storage.saveObject(Date.now)
                     DispatchQueue.main.async { [result] in
                         completion(result)
                     }
                 case .failure:
-                    print()
+                    completion(nil)
             }
         }
+    }
+    
+    // MARK: - Private methods
+
+    private func getActualWeatherFromStorage() -> WeatherDTO? {
+        
+        //check if its first featching
+        guard
+            let lastSavedWeatherDate = storage.getObject(by: Date.self)
+        else {
+            return nil
+        }
+        
+        //check if more than one day has passed
+        if Date.now.distance(from: lastSavedWeatherDate, only: .day) > 0 {
+            return nil
+        }
+        
+        //check if there is weather in storage
+        if let weather = storage.getObject(by: WeatherDTO.self) {
+            return weather
+        }
+        
+        return nil
     }
 }

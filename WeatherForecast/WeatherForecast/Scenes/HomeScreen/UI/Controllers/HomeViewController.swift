@@ -14,6 +14,8 @@ final class HomeViewController: UITableViewController {
     private enum Consts {
         enum Strings {
             static let title = "Weather forecast"
+            static let errorMessage = "Fail data loading"
+            static let OK = "OK"
         }
     }
     
@@ -45,7 +47,7 @@ final class HomeViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+
         registerCells()
         setupUI()
         bindToData()
@@ -58,7 +60,7 @@ final class HomeViewController: UITableViewController {
     // MARK: - Actions
     
     @objc private func refreshAction() {
-//        viewModel.refresh()
+        viewModel.fetchData()
     }
     
     // MARK: - Private methods
@@ -67,6 +69,11 @@ final class HomeViewController: UITableViewController {
         tableView.dataSource = viewModel.dataSource
         viewModel.onUpdateDataSource = { [weak self] in
             self?.tableView.reloadData()
+            self?.refreshControll.endRefreshing()
+        }
+        viewModel.onErrorLoadingData = { [weak self] in
+            self?.refreshControll.endRefreshing()
+            self?.showErrorAlert()
         }
     }
 
@@ -77,6 +84,21 @@ final class HomeViewController: UITableViewController {
     
     private func setupUI() {
         tableView.dataSource = viewModel.dataSource
+        tableView.addSubview(refreshControll)
         title = Consts.Strings.title
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(
+            title: Consts.Strings.title ,
+            message: Consts.Strings.errorMessage,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: Consts.Strings.OK,
+            style: UIAlertAction.Style.default,
+            handler: nil)
+        )
+        present(alert, animated: true, completion: nil)
     }
 }

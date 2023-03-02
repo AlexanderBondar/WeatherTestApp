@@ -17,6 +17,7 @@ final class HomeScreenViewModel {
 
     let dataSource = WeatherDataSource()
     var onUpdateDataSource: (() -> Void)?
+    var onErrorLoadingData: (() -> Void)?
 
     // MARK: - Private properties
     
@@ -39,6 +40,9 @@ final class HomeScreenViewModel {
     private func loadByCity(_ city: String) {
         
         useCase.getList(city: city) { [weak self] model in
+            
+            guard let model = model else { return }
+            
             self?.dataSource.update(model)
             self?.onUpdateDataSource?()
         }

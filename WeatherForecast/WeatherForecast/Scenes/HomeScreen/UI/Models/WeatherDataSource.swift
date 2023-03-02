@@ -36,13 +36,22 @@ extension WeatherDataSource: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        sections[section].cells.count
+        guard sections.indices.contains(section) else { return 0 }
+        
+        return sections[section].cells.count
     }
     
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
+        guard
+            sections.indices.contains(indexPath.section),
+            sections[indexPath.section].cells.indices.contains(indexPath.row)
+        else {
+            return UITableViewCell()
+        }
+        
         let model = sections[indexPath.section].cells[indexPath.row]
         switch sections[indexPath.section].type {
             case .city:

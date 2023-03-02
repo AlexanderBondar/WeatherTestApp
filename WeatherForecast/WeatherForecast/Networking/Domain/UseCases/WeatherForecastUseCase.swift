@@ -13,6 +13,6 @@ public protocol WeatherForecastUseCase {
     
     func getList(
         city: String,
-        completion: @escaping (WeatherModel) -> ()
+        completion: @escaping (WeatherModel?) -> ()
     )
 }
