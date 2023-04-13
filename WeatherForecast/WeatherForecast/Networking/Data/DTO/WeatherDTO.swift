@@ -10,6 +10,7 @@ import Foundation
 public struct WeatherDTO: Codable {
     let location: LocationDTO
     let forecast: ForecastDTO
+    var updateDate: Date?
 }
 
 // MARK: - DTO mappers

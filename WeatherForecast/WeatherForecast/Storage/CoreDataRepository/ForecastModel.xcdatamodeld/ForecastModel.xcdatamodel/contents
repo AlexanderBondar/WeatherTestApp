@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ConditionEntity" representedClassName="ConditionEntity" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="weatherDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherDayEntity" inverseName="condition" inverseEntity="WeatherDayEntity"/>
+    </entity>
+    <entity name="ForecastDayEntity" representedClassName="ForecastDayEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherDayEntity" inverseName="forecastDay" inverseEntity="WeatherDayEntity"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ForecastEntity" inverseName="forecastDay" inverseEntity="ForecastEntity"/>
+    </entity>
+    <entity name="ForecastEntity" representedClassName="ForecastEntity" syncable="YES">
+        <relationship name="forecastDay" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForecastDayEntity" inverseName="forecast" inverseEntity="ForecastDayEntity"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="forecast" inverseEntity="WeatherEntity"/>
+    </entity>
+    <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="localtime" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="location" inverseEntity="WeatherEntity"/>
+    </entity>
+    <entity name="WeatherDayEntity" representedClassName="WeatherDayEntity" syncable="YES">
+        <attribute name="maxtemp_c" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mintemp_c" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="condition" maxCount="1" deletionRule="Nullify" destinationEntity="ConditionEntity" inverseName="weatherDay" inverseEntity="ConditionEntity"/>
+        <relationship name="forecastDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ForecastDayEntity" inverseName="day" inverseEntity="ForecastDayEntity"/>
+    </entity>
+    <entity name="WeatherEntity" representedClassName="WeatherEntity" syncable="YES">
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ForecastEntity" inverseName="weather" inverseEntity="ForecastEntity"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity" inverseName="weather" inverseEntity="LocationEntity"/>
+    </entity>
+</model>

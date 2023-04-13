@@ -1,5 +1,5 @@
 //
-//  StorageRepositoryImpl.swift
+//  UserDefaultsRepository.swift
 //  WeatherForecast
 //
 //  Created by dev on 02.03.2023.
@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - StorageRepositoryImpl
 
-final class StorageRepositoryImpl {
+final class UserDefaultsRepository {
     
     // MARK: - Private properties
     
@@ -19,19 +19,20 @@ final class StorageRepositoryImpl {
 
 // MARK: - StorageRepository 
 
-extension StorageRepositoryImpl: StorageRepository {
-    func getObject<T>(by type: T.Type) -> T? where T : Decodable, T : Encodable {
+extension UserDefaultsRepository: StorageRepository {
+    
+    func getWeather() -> WeatherDTO? {
         do {
-            return try userDefaults.getObject(castTo: type)
+            return try userDefaults.getObject(castTo: WeatherDTO.self)
         } catch {
             print(error.localizedDescription)
             return nil
         }
     }
     
-    func saveObject(_ object: Codable) {
+    func saveWeather(_ weather: WeatherDTO) {
         do {
-            try userDefaults.setObject(object)
+            try userDefaults.setObject(weather)
         } catch {
             print(error.localizedDescription)
         }

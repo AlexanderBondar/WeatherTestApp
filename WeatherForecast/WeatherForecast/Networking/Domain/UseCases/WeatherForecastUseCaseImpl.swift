@@ -47,10 +47,11 @@ struct WeatherForecastUseCaseImpl: WeatherForecastUseCase {
             
             switch response {
                     
-                case .success(let response):
+                case .success(var response):
+                    response.updateDate = Date()
+                    storage.saveWeather(response)
+
                     result = response.asDomain()
-                    storage.saveObject(response)
-                    storage.saveObject(Date.now)
                     DispatchQueue.main.async { [result] in
                         completion(result)
                     }
@@ -64,23 +65,19 @@ struct WeatherForecastUseCaseImpl: WeatherForecastUseCase {
 
     private func getActualWeatherFromStorage() -> WeatherDTO? {
         
-        //check if its first featching
+        //check if its first fetching
         guard
-            let lastSavedWeatherDate = storage.getObject(by: Date.self)
+            let weather = storage.getWeather(),
+            let lastUpdate = weather.updateDate
         else {
             return nil
         }
-        
-        //check if more than one day has passed
-        if Date.now.distance(from: lastSavedWeatherDate, only: .day) > 0 {
+
+        //check if more than one day has passed after last update from network
+        if Date.now.distance(from: lastUpdate, only: .day) > 0 {
             return nil
         }
         
-        //check if there is weather in storage
-        if let weather = storage.getObject(by: WeatherDTO.self) {
-            return weather
-        }
-        
-        return nil
+        return weather
     }
 }

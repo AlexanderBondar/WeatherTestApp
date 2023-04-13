@@ -10,7 +10,6 @@ import Foundation
 // MARK: - StorageRepository
 
 public protocol StorageRepository {
-    
-    func getObject<T: Codable>(by type: T.Type) -> T?
-    func saveObject(_ object: Codable)
+    func getWeather() -> WeatherDTO?
+    func saveWeather(_ weather: WeatherDTO)
 }
